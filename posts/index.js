@@ -22,7 +22,7 @@ app.post('/posts', (req, res) => {
     const title = req.body.title;
     posts.push({id, title});
 
-    axios.post('http://localhost:4005/events', {
+    axios.post('http://event-bus-srv:4005/events', {
         type: 'PostCreated',
         data: { id, title }
     });
@@ -37,5 +37,5 @@ app.post('/events', (req, res) => {
 
 app.listen(3000, () => {
     console.log("updated")
-    console.log('Server is running on http://localhost:3000');
+    console.log('Server is running on http://posts-cluster-ip-srv:3000');
 }); 

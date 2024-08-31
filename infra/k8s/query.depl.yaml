@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: query-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: query
   template:
     metadata:
       labels:
-        app: posts
+        app: query
     spec:
       containers:
-        - name: posts
-          image: xafy/blog-posts-service
+        - name: query
+          image: xafy/blog-query-service
           imagePullPolicy: Never
           resources:
             limits:
@@ -27,13 +27,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-cluster-ip-srv
+  name: query-cluster-ip-srv
 spec:
   selector:
-    app: posts
+    app: query
   type: ClusterIP
   ports:
-    - name: posts
+    - name: query
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 3002
+      targetPort: 3002

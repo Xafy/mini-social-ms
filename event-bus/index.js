@@ -11,10 +11,10 @@ app.post('/events', async (req, res) => {
     const event = req.body;
     events.push(event);
     try {
-        await axios.post('http://localhost:3000/events', event); // posts event to posts service
-        await axios.post('http://localhost:3001/events', event); // posts event to comments service
-        await axios.post('http://localhost:3002/events', event); // posts event to query service
-        await axios.post('http://localhost:3003/events', event); // posts event to moderation service
+        await axios.post('http://posts-cluster-ip-srv:3000/events', event); // posts event to posts service
+        await axios.post('http://comments-cluster-ip-srv:3001/events', event); // posts event to comments service
+        await axios.post('http://query-cluster-ip-srv:3002/events', event); // posts event to query service
+        await axios.post('http://moderation-cluster-ip-srv:3003/events', event); // posts event to moderation service
 
         console.log('Event sent to all services');
     } catch (error) {

@@ -9,7 +9,7 @@ const CommentCreate = ({postId}) => {
 
         console.log("postId", postId);
 
-        await axios.post(`http://localhost:3001/posts/${postId}/comments`, {
+        await axios.post(`http://post.com/posts/${postId}/comments`, {
             content
         });
 

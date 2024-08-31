@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: comments-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: comments
   template:
     metadata:
       labels:
-        app: posts
+        app: comments
     spec:
       containers:
-        - name: posts
-          image: xafy/blog-posts-service
+        - name: comments
+          image: xafy/blog-comments-service
           imagePullPolicy: Never
           resources:
             limits:
@@ -27,13 +27,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-cluster-ip-srv
+  name: comments-cluster-ip-srv
 spec:
   selector:
-    app: posts
+    app: comments
   type: ClusterIP
   ports:
-    - name: posts
+    - name: comments
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 3001
+      targetPort: 3001
